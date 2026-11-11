@@ -31,6 +31,7 @@ type encoderOptions struct {
 	lowMem           bool
 	dict             *dict
 	concurrentBlocks bool
+	compat           EncoderCompat
 }
 
 func (o *encoderOptions) setDefault() {
@@ -48,7 +49,7 @@ func (o *encoderOptions) setDefault() {
 }
 
 // encoder returns an encoder with the selected options.
-func (o encoderOptions) encoder() encoder {
+func (o encoderOptions) encoderNoCompat() encoder {
 	switch o.level {
 	case SpeedFastest:
 		if o.dict != nil {

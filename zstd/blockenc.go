@@ -30,6 +30,7 @@ type blockEnc struct {
 
 	last   bool
 	lowMem bool
+	compat EncoderCompat
 }
 
 // init should be used once the block has been created.

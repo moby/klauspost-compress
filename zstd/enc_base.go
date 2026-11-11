@@ -23,6 +23,7 @@ type fastBase struct {
 	blk         *blockEnc
 	lastDict    *dict
 	lowMem      bool
+	compat      EncoderCompat
 }
 
 // CRC returns the underlying CRC writer.
@@ -133,7 +134,7 @@ func (e *fastBase) matchlen(s, t int32, src []byte) int32 {
 // Rep offsets are set to defaults [1,4,8] (invalidated, matching C behavior).
 func (e *fastBase) resetBasePrefix(prefix []byte) {
 	if e.blk == nil {
-		e.blk = &blockEnc{lowMem: e.lowMem}
+		e.blk = &blockEnc{lowMem: e.lowMem, compat: e.compat}
 		e.blk.init()
 	} else {
 		e.blk.reset(nil)
@@ -159,7 +160,7 @@ func (e *fastBase) resetBasePrefix(prefix []byte) {
 // Reset the encoding table.
 func (e *fastBase) resetBase(d *dict, singleBlock bool) {
 	if e.blk == nil {
-		e.blk = &blockEnc{lowMem: e.lowMem}
+		e.blk = &blockEnc{lowMem: e.lowMem, compat: e.compat}
 		e.blk.init()
 	} else {
 		e.blk.reset(nil)
