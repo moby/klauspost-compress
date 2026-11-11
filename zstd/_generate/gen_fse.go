@@ -5,7 +5,7 @@ package main
 import (
 	"flag"
 
-	_ "github.com/klauspost/compress"
+	_ "github.com/moby/klauspost-compress"
 
 	. "github.com/mmcloughlin/avo/build"
 	"github.com/mmcloughlin/avo/buildtags"
@@ -44,7 +44,7 @@ type buildDtable struct {
 }
 
 func (b *buildDtable) generateProcedure(name string) {
-	Package("github.com/klauspost/compress/zstd")
+	Package("github.com/moby/klauspost-compress/zstd")
 	TEXT(name, 0, "func (s *fseDecoder, ctx *buildDtableAsmContext ) int")
 	Doc(name+" implements fseDecoder.buildDtable in asm", "")
 	Pragma("noescape")

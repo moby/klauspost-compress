@@ -7,7 +7,7 @@ package snappy
 import (
 	"io"
 
-	"github.com/klauspost/compress/s2"
+	"github.com/moby/klauspost-compress/s2"
 )
 
 // Encode returns the encoded form of src. The returned slice may be a sub-

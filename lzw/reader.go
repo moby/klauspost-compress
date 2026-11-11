@@ -22,7 +22,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/klauspost/compress/internal/regmask"
+	"github.com/moby/klauspost-compress/internal/regmask"
 )
 
 // Order specifies the bit ordering in an LZW data stream.

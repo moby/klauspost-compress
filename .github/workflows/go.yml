@@ -97,7 +97,7 @@ jobs:
       run: GOOS=linux GOARCH=386 go test -short ./...
 
     - name: Build s2c
-      run: go build github.com/klauspost/compress/s2/cmd/s2c && go build github.com/klauspost/compress/s2/cmd/s2d&&./s2c -verify s2c &&./s2d s2c.s2&&rm ./s2c&&rm s2d&&rm s2c.s2
+      run: go build github.com/moby/klauspost-compress/s2/cmd/s2c && go build github.com/moby/klauspost-compress/s2/cmd/s2d&&./s2c -verify s2c &&./s2d s2c.s2&&rm ./s2c&&rm s2d&&rm s2c.s2
 
     - name: goreleaser deprecation
       run: curl -sfL https://goreleaser.com/static/run | VERSION=v2.13.3 bash -s -- check

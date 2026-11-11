@@ -19,8 +19,8 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/klauspost/compress/s2"
-	"github.com/klauspost/compress/s2/cmd/internal/readahead"
+	"github.com/moby/klauspost-compress/s2"
+	"github.com/moby/klauspost-compress/s2/cmd/internal/readahead"
 )
 
 const (

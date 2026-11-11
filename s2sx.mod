@@ -1,3 +1,3 @@
-module github.com/klauspost/compress
+module github.com/moby/klauspost-compress
 
 go 1.22

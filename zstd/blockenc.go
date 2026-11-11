@@ -11,7 +11,7 @@ import (
 	"math/bits"
 	"slices"
 
-	"github.com/klauspost/compress/huff0"
+	"github.com/moby/klauspost-compress/huff0"
 )
 
 type blockEnc struct {

@@ -12,8 +12,8 @@ import (
 	"net/http"
 	"net/http/httptest"
 
-	"github.com/klauspost/compress/gzhttp"
-	"github.com/klauspost/compress/gzip"
+	"github.com/moby/klauspost-compress/gzhttp"
+	"github.com/moby/klauspost-compress/gzip"
 )
 
 func ExampleTransport() {

@@ -44,11 +44,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/klauspost/compress/gzhttp/writer"
-	"github.com/klauspost/compress/gzhttp/writer/gzkp"
-	"github.com/klauspost/compress/gzhttp/writer/zstdkp"
-	"github.com/klauspost/compress/gzip"
-	"github.com/klauspost/compress/zstd"
+	"github.com/moby/klauspost-compress/gzhttp/writer"
+	"github.com/moby/klauspost-compress/gzhttp/writer/gzkp"
+	"github.com/moby/klauspost-compress/gzhttp/writer/zstdkp"
+	"github.com/moby/klauspost-compress/gzip"
+	"github.com/moby/klauspost-compress/zstd"
 )
 
 const (

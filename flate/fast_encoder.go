@@ -8,8 +8,8 @@ package flate
 import (
 	"fmt"
 
-	"github.com/klauspost/compress/internal/le"
-	"github.com/klauspost/compress/internal/regmask"
+	"github.com/moby/klauspost-compress/internal/le"
+	"github.com/moby/klauspost-compress/internal/regmask"
 )
 
 type fastEnc interface {

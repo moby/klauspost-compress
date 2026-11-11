@@ -12,8 +12,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/klauspost/compress/internal/cpuinfo"
-	"github.com/klauspost/compress/zip"
+	"github.com/moby/klauspost-compress/internal/cpuinfo"
+	"github.com/moby/klauspost-compress/zip"
 )
 
 func Benchmark_seqdec_decodeNoBMI(b *testing.B) {

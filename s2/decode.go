@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/klauspost/compress/internal/race"
+	"github.com/moby/klauspost-compress/internal/race"
 )
 
 var (

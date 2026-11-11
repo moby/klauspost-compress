@@ -8,7 +8,7 @@ package zstd
 import (
 	"math/bits"
 
-	"github.com/klauspost/compress/internal/le"
+	"github.com/moby/klauspost-compress/internal/le"
 )
 
 // matchLen returns the maximum common prefix length of a and b.

@@ -3,7 +3,7 @@
 package zstd
 
 import (
-	"github.com/klauspost/compress/internal/cpuinfo"
+	"github.com/moby/klauspost-compress/internal/cpuinfo"
 )
 
 // The shared decode/decodeSync/executeSimple wrappers and context structs live

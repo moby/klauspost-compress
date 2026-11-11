@@ -10,7 +10,7 @@ import (
 	"io"
 	"math/bits"
 
-	"github.com/klauspost/compress/internal/le"
+	"github.com/moby/klauspost-compress/internal/le"
 )
 
 // bitReader reads a bitstream in reverse.

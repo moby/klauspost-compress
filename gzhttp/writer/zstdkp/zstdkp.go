@@ -5,8 +5,8 @@ import (
 	"io"
 	"sync"
 
-	"github.com/klauspost/compress/gzhttp/writer"
-	"github.com/klauspost/compress/zstd"
+	"github.com/moby/klauspost-compress/gzhttp/writer"
+	"github.com/moby/klauspost-compress/zstd"
 )
 
 // zstdWriterPools stores a sync.Pool for each compression level for reuse of

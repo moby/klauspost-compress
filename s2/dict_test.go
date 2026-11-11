@@ -18,8 +18,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/klauspost/compress/internal/fuzz"
-	"github.com/klauspost/compress/zstd"
+	"github.com/moby/klauspost-compress/internal/fuzz"
+	"github.com/moby/klauspost-compress/zstd"
 )
 
 func TestDict(t *testing.T) {

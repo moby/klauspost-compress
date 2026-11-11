@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/klauspost/compress/zstd"
+	"github.com/moby/klauspost-compress/zstd"
 )
 
 func ExampleWithEncoderDictRaw() {

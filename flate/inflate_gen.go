@@ -9,7 +9,7 @@ import (
 	"math/bits"
 	"strings"
 
-	"github.com/klauspost/compress/internal/regmask"
+	"github.com/moby/klauspost-compress/internal/regmask"
 )
 
 func peekBufio(fr *bufio.Reader) ([]byte, error) {

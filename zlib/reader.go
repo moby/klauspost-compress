@@ -31,7 +31,7 @@ import (
 	"hash/adler32"
 	"io"
 
-	"github.com/klauspost/compress/flate"
+	"github.com/moby/klauspost-compress/flate"
 )
 
 const (

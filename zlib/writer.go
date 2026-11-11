@@ -11,7 +11,7 @@ import (
 	"hash/adler32"
 	"io"
 
-	"github.com/klauspost/compress/flate"
+	"github.com/moby/klauspost-compress/flate"
 )
 
 // These constants are copied from the flate package, so that code that imports

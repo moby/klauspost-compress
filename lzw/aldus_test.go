@@ -12,7 +12,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/klauspost/compress/lzw"
+	"github.com/moby/klauspost-compress/lzw"
 )
 
 // TestRefOrderValues checks the assumption that lets the reference decoder in

@@ -13,7 +13,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/klauspost/compress/flate"
+	"github.com/moby/klauspost-compress/flate"
 )
 
 // In performance critical applications, Reset can be used to discard the

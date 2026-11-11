@@ -1,9 +1,9 @@
-module github.com/klauspost/compress/zstd/_generate
+module github.com/moby/klauspost-compress/zstd/_generate
 
 go 1.25
 
 require (
-	github.com/klauspost/compress v1.15.15
+	github.com/moby/klauspost-compress v1.15.15
 	github.com/mmcloughlin/avo v0.6.1-0.20260709170202-520357590ac6
 )
 
@@ -13,6 +13,6 @@ require (
 	golang.org/x/tools v0.36.0 // indirect
 )
 
-replace github.com/klauspost/compress => ../..
+replace github.com/moby/klauspost-compress => ../..
 
 replace github.com/mmcloughlin/avo => github.com/honeycombio/avo v0.6.1-0.20260903115212-67bf513549d1

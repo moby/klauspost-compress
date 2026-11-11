@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/klauspost/compress/internal/regmask"
+	"github.com/moby/klauspost-compress/internal/regmask"
 )
 
 // A writer is a buffered, flushable writer. Such a destination did its own

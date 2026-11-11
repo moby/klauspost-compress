@@ -17,8 +17,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/klauspost/compress/zip"
-	"github.com/klauspost/compress/zstd/internal/xxhash"
+	"github.com/moby/klauspost-compress/zip"
+	"github.com/moby/klauspost-compress/zstd/internal/xxhash"
 )
 
 var testWindowSizes = []int{MinWindowSize, 1 << 16, 1 << 22, 1 << 24}

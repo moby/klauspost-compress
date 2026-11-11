@@ -15,7 +15,7 @@ import (
 	"math/bits"
 	"sync"
 
-	"github.com/klauspost/compress/internal/regmask"
+	"github.com/moby/klauspost-compress/internal/regmask"
 )
 
 const (

@@ -8,8 +8,8 @@ import (
 	"io"
 	"testing"
 
-	"github.com/klauspost/compress/internal/fuzz"
-	"github.com/klauspost/compress/internal/snapref"
+	"github.com/moby/klauspost-compress/internal/fuzz"
+	"github.com/moby/klauspost-compress/internal/snapref"
 )
 
 func FuzzEncodingBlocks(f *testing.F) {

@@ -11,7 +11,7 @@ import (
 	"fmt"
 	"math/bits"
 
-	"github.com/klauspost/compress/internal/le"
+	"github.com/moby/klauspost-compress/internal/le"
 )
 
 func load32(b []byte, i int) uint32 {

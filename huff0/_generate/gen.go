@@ -8,7 +8,7 @@ import (
 	"fmt"
 	mbits "math/bits"
 
-	_ "github.com/klauspost/compress"
+	_ "github.com/moby/klauspost-compress"
 
 	. "github.com/mmcloughlin/avo/build"
 	. "github.com/mmcloughlin/avo/operand"
@@ -107,7 +107,7 @@ func outputBoundShift(nSyms int) int {
 // peekBits and the context pointer are live throughout (11 of 15), so every
 // step below uses at most two temporaries.
 func (d decompress4x) generateProcedure(name string, nSyms int) {
-	Package("github.com/klauspost/compress/huff0")
+	Package("github.com/moby/klauspost-compress/huff0")
 	TEXT(name, 0, "func(ctx* decompress4xContext)")
 	doc := []string{fmt.Sprintf("%s decodes %d symbols per stream per reload from four interleaved huff0 streams.", name, nSyms)}
 	if !d.bmi2 {
@@ -324,7 +324,7 @@ type decompress1x struct {
 // and by the distance to the stream start (each refill reads the 8 bytes
 // below the window and moves it down by at most 7 bytes).
 func (d decompress1x) generateProcedure(name string, nSyms int) {
-	Package("github.com/klauspost/compress/huff0")
+	Package("github.com/moby/klauspost-compress/huff0")
 	TEXT(name, 0, "func(ctx* decompress1xContext)")
 	Doc(fmt.Sprintf("%s decodes %d symbols per refill from one huff0 stream.", name, nSyms))
 	Pragma("noescape")

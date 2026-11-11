@@ -7,9 +7,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/klauspost/compress/internal/cpuinfo"
-	"github.com/klauspost/compress/internal/le"
-	"github.com/klauspost/compress/zip"
+	"github.com/moby/klauspost-compress/internal/cpuinfo"
+	"github.com/moby/klauspost-compress/internal/le"
+	"github.com/moby/klauspost-compress/zip"
 )
 
 func TestDecompress1X(t *testing.T) {

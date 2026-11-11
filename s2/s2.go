@@ -38,7 +38,7 @@ import (
 	"bytes"
 	"hash/crc32"
 
-	"github.com/klauspost/compress/internal/race"
+	"github.com/moby/klauspost-compress/internal/race"
 )
 
 /*

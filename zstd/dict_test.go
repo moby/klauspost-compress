@@ -10,7 +10,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/klauspost/compress/zip"
+	"github.com/moby/klauspost-compress/zip"
 )
 
 func TestDecoder_SmallDict(t *testing.T) {

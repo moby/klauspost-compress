@@ -23,7 +23,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/klauspost/compress/zip"
+	"github.com/moby/klauspost-compress/zip"
 )
 
 var (

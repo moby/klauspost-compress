@@ -9,8 +9,8 @@ import (
 	rdebug "runtime/debug"
 	"testing"
 
-	"github.com/klauspost/compress/internal/cpuinfo"
-	"github.com/klauspost/compress/internal/fuzz"
+	"github.com/moby/klauspost-compress/internal/cpuinfo"
+	"github.com/moby/klauspost-compress/internal/fuzz"
 )
 
 func FuzzDecodeAll(f *testing.F) {

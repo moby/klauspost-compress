@@ -11,7 +11,7 @@ import (
 	"math/bits"
 	"sync"
 
-	"github.com/klauspost/compress/internal/race"
+	"github.com/moby/klauspost-compress/internal/race"
 )
 
 // Encode returns the encoded form of src. The returned slice may be a sub-

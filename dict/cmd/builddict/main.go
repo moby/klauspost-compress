@@ -13,8 +13,8 @@ import (
 	"path/filepath"
 	"runtime/debug"
 
-	"github.com/klauspost/compress/dict"
-	"github.com/klauspost/compress/zstd"
+	"github.com/moby/klauspost-compress/dict"
+	"github.com/moby/klauspost-compress/zstd"
 )
 
 var (

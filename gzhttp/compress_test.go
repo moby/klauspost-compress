@@ -17,9 +17,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/klauspost/compress/flate"
-	"github.com/klauspost/compress/gzip"
-	"github.com/klauspost/compress/zstd"
+	"github.com/moby/klauspost-compress/flate"
+	"github.com/moby/klauspost-compress/gzip"
+	"github.com/moby/klauspost-compress/zstd"
 )
 
 var (

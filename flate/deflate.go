@@ -11,7 +11,7 @@ import (
 	"io"
 	"math"
 
-	"github.com/klauspost/compress/internal/le"
+	"github.com/moby/klauspost-compress/internal/le"
 )
 
 const (

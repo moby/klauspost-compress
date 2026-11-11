@@ -12,9 +12,9 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/klauspost/compress/internal/fuzz"
-	"github.com/klauspost/compress/internal/lz4ref"
-	"github.com/klauspost/compress/internal/snapref"
+	"github.com/moby/klauspost-compress/internal/fuzz"
+	"github.com/moby/klauspost-compress/internal/lz4ref"
+	"github.com/moby/klauspost-compress/internal/snapref"
 )
 
 func TestLZ4Converter_ConvertBlock(t *testing.T) {

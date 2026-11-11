@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/klauspost/compress/zip"
+	"github.com/moby/klauspost-compress/zip"
 )
 
 func TestSequenceDecsAdjustOffset(t *testing.T) {
