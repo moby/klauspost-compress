@@ -1,0 +1,140 @@
+# Fork-specific checks for github.com/moby/klauspost-compress. See README.md.
+# Upstream's own tests run from go.yml, which only runs on master; the upstream job here runs
+# them on release-* branches.
+name: Compat
+
+on:
+  push:
+    branches: [ master, 'release-*' ]
+  pull_request:
+    branches: [ master, 'release-*' ]
+
+permissions: read-all
+
+jobs:
+  goldens:
+    strategy:
+      fail-fast: false
+      matrix:
+        go-version: [1.25.x, 1.27.x]
+        os: [ubuntu-latest, ubuntu-24.04-arm]
+        tags: [ '', 'noasm', 'nounsafe', 'nounsafe,noasm' ]
+    runs-on: ${{ matrix.os }}
+    env:
+      CGO_ENABLED: 0
+      TAGS: ${{ matrix.tags }}
+    steps:
+    - name: Set up Go
+      uses: actions/setup-go@v7.0.0
+      with:
+        go-version: ${{ matrix.go-version }}
+
+    - name: Checkout code
+      uses: actions/checkout@v7.0.1
+
+    - name: Compat option tests
+      run: go test -tags="$TAGS" -count=1 -run 'EncoderCompat' ./zstd/
+
+    - name: Golden tests
+      working-directory: compattest
+      run: go test -tags="$TAGS" -count=1 ./...
+
+  goldens-386:
+    runs-on: ubuntu-latest
+    env:
+      CGO_ENABLED: 0
+      GOARCH: 386
+    steps:
+    - name: Set up Go
+      uses: actions/setup-go@v7.0.0
+      with:
+        go-version: 1.27.x
+
+    - name: Checkout code
+      uses: actions/checkout@v7.0.1
+
+    - name: Golden tests
+      working-directory: compattest
+      run: go test -count=1 ./...
+
+  # Regenerates every golden file from the upstream version recorded in it (Go module
+  # proxy, verified against sum.golang.org) and fails if the committed file differs.
+  # compattest checks that the version is the release the file is named after.
+  authenticity:
+    runs-on: ubuntu-latest
+    env:
+      CGO_ENABLED: 0
+    steps:
+    - name: Set up Go
+      uses: actions/setup-go@v7.0.0
+      with:
+        go-version: 1.27.x
+
+    - name: Checkout code
+      uses: actions/checkout@v7.0.1
+
+    - name: Regenerate goldens
+      run: |
+        for f in compattest/testdata/golden/*.json; do
+          v=$(jq -r .source "$f" | sed -n 's#^github.com/klauspost/compress@\([^ ]*\) h1:.*#\1#p')
+          [ -n "$v" ] || { echo "$f: no upstream version in source"; exit 1; }
+          compattest/_gen/gen.sh --upstream "$v" -o "$RUNNER_TEMP/out.json"
+          diff -u "$f" "$RUNNER_TEMP/out.json"
+        done
+
+  vet:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Go
+      uses: actions/setup-go@v7.0.0
+      with:
+        go-version: 1.27.x
+
+    - name: Checkout code
+      uses: actions/checkout@v7.0.1
+
+    - name: Vet
+      working-directory: compattest
+      run: go vet ./...
+
+    - name: gofmt
+      run: diff <(gofmt -d compattest zstd/encoder_compat.go zstd/encoder_compat_test.go) <(printf "")
+
+  upstream:
+    if: startsWith(github.ref, 'refs/heads/release-') || startsWith(github.base_ref, 'release-')
+    strategy:
+      fail-fast: false
+      matrix:
+        go-version: [1.25.x, 1.27.x]
+        os: [ubuntu-latest, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.os }}
+    env:
+      CGO_ENABLED: 0
+    steps:
+    - name: Set up Go
+      uses: actions/setup-go@v7.0.0
+      with:
+        go-version: ${{ matrix.go-version }}
+
+    - name: Checkout code
+      uses: actions/checkout@v7.0.1
+
+    - name: Vet
+      run: go vet ./...
+
+    - name: Test
+      run: go test ./...
+
+    - name: Test No-asm
+      run: go test -tags=noasm ./...
+
+    - name: Test No-unsafe
+      run: go test -tags=nounsafe ./...
+
+    - name: Test No-unsafe, noasm
+      run: go test -tags="nounsafe,noasm" ./...
+
+    - name: Test Race 4 CPU
+      env:
+        CGO_ENABLED: 1
+      run: go test -cpu=4 -short -race -tags=nounsafe ./...
