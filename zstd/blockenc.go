@@ -808,20 +808,23 @@ func (b *blockEnc) chooseComp(cur, prev, preDef *fseEncoder) (*fseEncoder, seqCo
 	// The previous table may come from a dictionary and fit poorly,
 	// so it is compared against the exact header size, without penalty.
 	nSizePrev := nSize
-	if prevSize != math.MaxUint32 {
-		// Written to spare capacity; the real header goes there later.
-		if hdr, err := cur.writeCount(b.output[len(b.output):]); err == nil {
-			nSizePrev = cur.approxSize(hist) + uint32(len(hdr))*8
+	// Before v1.20.3 neither the exact header size nor the final flush was counted.
+	if !b.compat.older(EncoderCompatV1_20_3) {
+		if prevSize != math.MaxUint32 {
+			// Written to spare capacity; the real header goes there later.
+			if hdr, err := cur.writeCount(b.output[len(b.output):]); err == nil {
+				nSizePrev = cur.approxSize(hist) + uint32(len(hdr))*8
+			}
 		}
-	}
-	// Each stream ends with a flush of tableLog bits.
-	nSize += uint32(cur.actualTableLog)
-	nSizePrev += uint32(cur.actualTableLog)
-	if predefSize != math.MaxUint32 {
-		predefSize += uint32(preDef.actualTableLog)
-	}
-	if prevSize != math.MaxUint32 {
-		prevSize += uint32(prev.actualTableLog)
+		// Each stream ends with a flush of tableLog bits.
+		nSize += uint32(cur.actualTableLog)
+		nSizePrev += uint32(cur.actualTableLog)
+		if predefSize != math.MaxUint32 {
+			predefSize += uint32(preDef.actualTableLog)
+		}
+		if prevSize != math.MaxUint32 {
+			prevSize += uint32(prev.actualTableLog)
+		}
 	}
 	switch {
 	case predefSize <= prevSize && predefSize <= nSize || forcePreDef:

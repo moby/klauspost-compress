@@ -24,6 +24,7 @@ var levels = []struct {
 	release string
 }{
 	{zstd.EncoderCompatV1_20_2, "v1.20.2"},
+	{zstd.EncoderCompatV1_20_3, "v1.20.3"},
 }
 
 var pseudoSource = regexp.MustCompile(`^github\.com/klauspost/compress@v[0-9]+\.[0-9]+\.[0-9]+-0\.[0-9]{14}-[0-9a-f]{12} h1:`)

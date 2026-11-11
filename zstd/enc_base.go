@@ -195,7 +195,10 @@ func (e *fastBase) resetBase(d *dict, singleBlock bool) {
 		}
 		// Transfer litenc.
 		e.blk.dictLitEnc = d.litEnc
-		e.blk.coders.seedPrevFromDict(d)
+		// Before v1.20.3 the dictionary sequence tables were not offered for reuse.
+		if !e.compat.older(EncoderCompatV1_20_3) {
+			e.blk.coders.seedPrevFromDict(d)
+		}
 		e.hist = append(e.hist, d.content...)
 	}
 }

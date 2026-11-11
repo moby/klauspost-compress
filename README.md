@@ -21,7 +21,8 @@ enc, err := zstd.NewWriter(w, zstd.WithEncoderCompat(recorded))
 
 | Level | Reproduces the output of |
 |---|---|
-| `zstd.EncoderCompatV1_20_2` (1) | v1.20.2 and later releases up to the next level; also v1.18.5–v1.20.1 for non-empty input |
+| `zstd.EncoderCompatV1_20_2` (1) | v1.20.2; also v1.18.5–v1.20.1 for non-empty input |
+| `zstd.EncoderCompatV1_20_3` (2) | v1.20.3 and later releases up to the next level (upstream #1233: dictionary sequence tables, exact table costs) |
 
 `0` selects `EncoderCompatCurrent`, the latest level. Store the numeric value of
 `EncoderCompatCurrent`, never 0. Levels are only added, never changed or renumbered.

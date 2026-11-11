@@ -27,9 +27,14 @@ const (
 	// For non-empty input this also matches v1.18.5 to v1.20.1.
 	EncoderCompatV1_20_2 EncoderCompat = 1
 
+	// EncoderCompatV1_20_3 produces the output of v1.20.3 and of later releases
+	// up to the next level. It reuses dictionary sequence tables and counts the exact table header
+	// and flush costs when choosing sequence tables (upstream #1233).
+	EncoderCompatV1_20_3 EncoderCompat = 2
+
 	// EncoderCompatCurrent is the output this release produces by default.
 	// Record this value to reproduce the output with a later release.
-	EncoderCompatCurrent = EncoderCompatV1_20_2
+	EncoderCompatCurrent = EncoderCompatV1_20_3
 )
 
 // WithEncoderCompat makes the encoder produce the output of an earlier release.
@@ -54,6 +59,11 @@ func (c EncoderCompat) resolve() EncoderCompat {
 		return EncoderCompatCurrent
 	}
 	return c
+}
+
+// older reports whether c selects the output of a release before n.
+func (c EncoderCompat) older(n EncoderCompat) bool {
+	return c.resolve() < n
 }
 
 // encoder returns an encoder with the selected options.
