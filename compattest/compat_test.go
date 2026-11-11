@@ -2,6 +2,7 @@ package compattest_test
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -64,6 +65,16 @@ func TestLevels(t *testing.T) {
 		releases = append(releases, filepath.Join("testdata", "golden", l.release+".json"))
 	}
 	require.ElementsMatch(t, releases, files, "every golden file needs a level and every level a golden file")
+
+	// The level table in README.md lists exactly these levels.
+	readme, err := os.ReadFile(filepath.Join("..", "README.md"))
+	require.NoError(t, err)
+	var want []string
+	for _, l := range levels {
+		want = append(want, fmt.Sprintf("zstd.EncoderCompatV%s` (%d)", strings.ReplaceAll(strings.TrimPrefix(l.release, "v"), ".", "_"), l.compat))
+	}
+	got := regexp.MustCompile("zstd\\.EncoderCompatV[0-9_]+` \\([0-9]+\\)").FindAllString(string(readme), -1)
+	require.Equal(t, want, got, "README.md level table")
 }
 
 // TestGoldens checks that each compat level reproduces the output of its release.
