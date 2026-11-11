@@ -1,3 +1,52 @@
+# github.com/moby/klauspost-compress
+
+This is a fork of [klauspost/compress](https://github.com/klauspost/compress) that can
+reproduce the zstd encoder output of earlier releases byte for byte.
+
+Upstream changes the zstd encoder output when it finds a better encoding. This fork
+keeps those improvements as the default, so the default output is identical to
+upstream, and adds an option to select the output of an earlier release.
+
+Only the `zstd` package has fork changes and compatibility guarantees. The other
+packages are unchanged copies of upstream; use upstream for them.
+
+## Usage
+
+```go
+import "github.com/moby/klauspost-compress/zstd"
+
+// Record zstd.EncoderCompatCurrent with the artifact. To reproduce it later:
+enc, err := zstd.NewWriter(w, zstd.WithEncoderCompat(recorded))
+```
+
+| Level | Reproduces the output of |
+|---|---|
+| `zstd.EncoderCompatV1_20_2` (1) | v1.20.2 and later releases up to the next level; also v1.18.5–v1.20.1 for non-empty input |
+
+`0` selects `EncoderCompatCurrent`, the latest level. Store the numeric value of
+`EncoderCompatCurrent`, never 0. Levels are only added, never changed or renumbered.
+A release that does not change the output gets no new level.
+
+### What is covered
+
+The same input, options and level give the same bytes in every later release.
+Not covered:
+
+- The content of `WithEncoderPadding` (random); its length is covered.
+- Output after an option returned an error.
+- Output that the reproduced release could not decode itself (for example the
+  flushed streams fixed by upstream #1299). Fixes for such bugs are not gated.
+- `zstd.EncodeTo`, which always produces the current output.
+- The snappy converter (`zstd.SnappyConverter`) and dictionary building (`zstd.BuildDict`).
+- `WithConcurrentBlocks` with a window above 64 MiB.
+
+With a dictionary or `WithConcurrentBlocks`, the output depends on the number of
+concurrent encoders. Set `WithEncoderConcurrency` explicitly in that case.
+
+---
+
+*The rest of this README is upstream's.*
+
 # compress
 
 This package provides various compression algorithms.
