@@ -1,0 +1,15 @@
+# Paths that may differ from the renamed upstream tree at a release commit.
+# A directory entry ends with "/". The release check rejects any other difference.
+
+# Fork-owned
+.github/workflows/compat.yml
+compattest/
+zstd/encoder_compat.go
+zstd/encoder_compat_test.go
+
+# Upstream files with fork changes
+README.md
+zstd/blockenc.go
+zstd/enc_base.go
+zstd/encoder.go
+zstd/encoder_options.go
